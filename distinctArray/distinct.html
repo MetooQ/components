@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script>
+	var arr = [0,2,7,5,3,0,2,7,2];
+	function distinct(arr){
+		var ret = [];
+	    for (var i = 0; i < arr.length; i++)
+	    {
+	        for (var j = i+1; j < arr.length;) {   
+	            if (arr[i] === arr[j]) {
+	                ret.push(arr.splice(j, 1)[0]);
+	            } else {
+	                j++;
+	            }
+	        }
+	     }
+	     return ret;
+	}
+
+	alert(arr);
+	sort(arr);
+	alert(arr)
+	</script>
+</html>
