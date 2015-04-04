@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	#content{
+		color:grey;
+	}
+</style>	
+<body>
+	<input type="text" id="content" value="请输入内容">
+</body>
+<script>
+	var input = document.getElementById("content");
+	input.onfocus = function(){
+		if(this.value == "请输入内容"){
+			this.value = "";
+			this.style.color = "black";
+		}
+	}
+	input.onblur = function(){
+		if(this.value == ""){
+			this.style.color = "grey";	
+			this.value = "请输入内容";
+		}
+	}
+</script>
+</html>
