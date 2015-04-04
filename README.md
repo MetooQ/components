@@ -1,0 +1,1 @@
+components of basic algorithm
