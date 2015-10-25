@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <title>onload test</title>
+    <style>
+      #container{
+          width: 225px;
+          height: 225px;
+          position: absolute;
+          border: 1px black solid;
+          left: 50%;
+          margin-left: -112px;
+      }
+      
+      #gif{
+          width: 100%;
+      }
+      
+      #refresh {
+          position: absolute;
+          top: 10px;
+          left: 42px;
+          width: 60%;
+          display: none;          
+          cursor: pointer;
+      }
+      
+      #refresh-bg {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(255,255,255,0.7);
+          display: none;
+      }
+      
+    </style>
+  </head>
+  
+  <body>
+    <div id="container">
+      <img id="gif" src="" alt="">
+      <div id="refresh-bg"></div>
+      <img id="refresh" src="images/refresh.png" alt="">
+    </div>
+    
+    
+    <script>
+      function load() {
+        //load the gif
+        var img = document.getElementById("gif");
+        img.setAttribute("src", "images/scan_gesture.gif");
+        
+        //loading
+        setTimeout(function() {
+          img.setAttribute("src", "images/loading.png");
+        },2800);
+        
+        //load qrcode after 4s
+        setTimeout(function() {
+          qr(img);
+        },4000);
+        
+        //refresh
+        setTimeout(function() {
+          refreshFn(img);
+        },10000);
+        
+      };
+      
+      function qr(img) {
+        img.setAttribute("src", "images/qr.png");
+        img.addEventListener("mouseover", function(){
+          img.setAttribute("src", "images/scan_gesture.gif");
+        });
+        img.addEventListener("mouseout", function(){
+          img.setAttribute("src", "images/qr.png");
+        })
+        
+      }
+      
+      function refreshFn(img) {
+        var refresh = document.getElementById("refresh");
+        var refresh_bg = document.getElementById("refresh-bg");
+        refresh.setAttribute("style","display:block");
+        refresh_bg.setAttribute("style","display:block");
+        
+        refresh.addEventListener("click",function(){
+          refresh.setAttribute("style","display:none");
+          refresh_bg.setAttribute("style","display:none");
+          
+          img.setAttribute("src", "images/loading.png");
+          
+          //load qrcode after 4s
+          setTimeout(function() {
+              qr(img);
+          },4000);
+          
+          setTimeout(function() {
+            refreshFn(img);
+          },5000);
+        });       
+        
+      }
+      
+      window.onload = load;
+    </script>
+  </body>
+</html>
