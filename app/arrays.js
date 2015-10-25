@@ -13,7 +13,7 @@ exports.arraysAnswers = {
         }
         return result;
     },
-
+    //filter
     remove : function(arr, item) {
         // var result = [];
         // for(var i = 0, len = arr.length; i<len; i++){
